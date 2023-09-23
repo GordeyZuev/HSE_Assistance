@@ -58,7 +58,7 @@ for name in result:
        print(result[name], '\t', name)
 
 
-# Статистика - Тестовое.
+# Статистика по контесту в целом - Тестовое.
 def contest_stats(normal_list: list):
     participants_num = len(normal_list) - 1
     line_size = len(normal_list[0])
