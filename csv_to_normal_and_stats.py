@@ -18,9 +18,9 @@ def result_converter(result):
     return 0                # Случай, когда решения нет
 
 
-
-normal_list = []
-result = {}
+# Создаем переменные
+normal_list = []                    # Список с результатами по всем задачам
+result = {'Name': 'Solved'}         # Словарь для пар Имя - количество решенных
 
 for i in range(len(list)):
     line = list[i]
@@ -52,7 +52,7 @@ normal_list.sort()      # Тут сортировка работает хоро�
 
 for name in result:
     if name in group_list:
-       print(name, '\t', result[name])
+       print(result[name], '\t', name)
 
 
 
