@@ -51,6 +51,8 @@ result = dict(sorted(result.items()))       # Сортируем по фамил
 #normal_list.sort()      # Тут сортировка работает хорошо, потому что идет по первому элементу!
 
 # Выводим список студентов
+
+print('-' * 3 + 'Results' + '-' * 3, '\n')
 for name in result:
     if name in group_list:      # Проверяем, есть ли студент в группе.
        print(result[name], '\t', name)
@@ -58,6 +60,7 @@ for name in result:
 
 # Статистика - Тестовое.
 def contest_stats(normal_list: list):
+    participants_num = len(normal_list) - 1
     line_size = len(normal_list[0])
     solved_all_num = 0
 
@@ -77,7 +80,6 @@ def contest_stats(normal_list: list):
                 tasks_list[normal_list[0][j]][1] += abs(normal_list[i][j])
             else:
                 if j - 1 == normal_list[i][j]:
-                    print(j, normal_list[i])
                     solved_all_num += 1
 
 
@@ -91,14 +93,20 @@ def contest_stats(normal_list: list):
             hardest_task = (task, min_percentage)
 
     # Оформление вывода
-    print()
+    print('\n\n', '-' * 3 + 'Main Statistics' + '-' * 3, '\n')
+
+    print(f'Всего решали - {participants_num}')
+    print(f'Решили всё - {solved_all_num}')
+
+    print(f'\n- Самая сложная задача - {hardest_task[0].replace("(", " (")} человек.')
+    print(f'Удачных попыток -  {hardest_task[1]}')
+
+    print('\n\n', '-' * 3 + 'Task Statistics' + '-' * 3, '\n')
+
     for task in tasks_list:
-        print(f'Задача {task.replace("(", " (")}')
+        print(f'- Задача {task.replace("(", " (")}')
         print(f'Решило: {tasks_list[task][0]}, Попыток: {tasks_list[task][1]}, Процент: {tasks_list[task][2]}')
         print()
-    print(f'Самая сложная - {hardest_task[0].replace("(", " (")}')
-    print(f'Удачных попыток -  {hardest_task[1]}')
-    print(f'Решили все задачи - {solved_all_num}')
 
 # Вызов функции статистики.
 contest_stats(normal_list)
