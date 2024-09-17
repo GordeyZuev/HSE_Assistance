@@ -1,8 +1,10 @@
 import pandas as pd
 from result_converter import result_converter
 
+contest_file_name = 'standings-knad1.csv'
+
 # Достаем файлик, удаляем столбец penalty
-contest_results = pd.read_csv("standings-67848.csv").set_index('user_name')
+contest_results = pd.read_csv(contest_file_name).set_index('user_name')
 contest_results.drop(['Penalty','place'], axis = 1, inplace=True)
 students_list = pd.read_csv("students_list.csv").set_index('user_name')
 
@@ -17,9 +19,10 @@ for task in final_list.columns.tolist()[4:]:
 # Настройка формата отображения.
 pd.set_option('display.max_columns', None)
 pd.options.display.float_format = '{:,.0f}'.format
-
 # Добавляем столбец с итогами (Суммой)
 final_list.loc['Total'] = final_list.sum(numeric_only=True)
 
 # Вывод
-#print(final_list[['Score']])
+faculty_choosing = 'КНАД241'
+export_result = (final_list[final_list['faculty'] == faculty_choosing])
+export_result.to_csv('result.csv')
