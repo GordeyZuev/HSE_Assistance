@@ -17,10 +17,10 @@ final_list = students_list.merge(contest_results, on=['user_name', 'login'], how
 tasks = final_list.columns[final_list.columns.get_loc('faculty') + 1:]
 final_list[tasks] = final_list[tasks].fillna(0).map(result_converter)
 
-# Добавляем столбец с итогами.
-final_list.loc['Total'] = final_list.select_dtypes(include='number').sum()
+# Выполняем сортировку..
+final_list.sort_values(by=['faculty', 'user_name'])
 
 # Экспорт результата.
-faculty_choosing = '' # Варианты: 'КНАД241' / 'КНАД242' / 'ВСН' / 'СмолГУ'
-export_result = final_list[final_list['faculty'] == faculty_choosing]
+faculty_choosing = ['КНАД242'] # 'КНАД242', 'КНАД241', 'КНАД242', 'ВСН', 'СмолГУ'
+export_result = final_list[final_list['faculty'].isin(faculty_choosing)]
 export_result.to_csv('result.csv')
