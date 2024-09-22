@@ -1,10 +1,6 @@
 import pandas as pd
 from result_converter import result_converter
 
-# Настройка отображения.
-pd.set_option('display.max_columns', None)
-pd.options.display.float_format = '{:,.0f}'.format
-
 # Чтение файлов.
 contest_file_name = 'standings-knad1.csv'
 contest_results = pd.read_csv(contest_file_name).drop(columns=['Penalty', 'place'])
