@@ -24,7 +24,7 @@ final_list.loc['Total'] = final_list.select_dtypes(include='number').sum()
 final_list[final_list.columns[res_start_ind:]] = final_list[final_list.columns[res_start_ind:]].astype(int)
 
 # Сортировка значений.
-final_list.sort_values(by=['faculty', 'user_name'])
+final_list = final_list.sort_values(by=['faculty', 'user_name'])
 
 # Экспорт результата.
 faculty_choosing = ['КНАД242'] # 'КНАД242', 'КНАД241', 'КНАД242', 'ВСН', 'СмолГУ'
